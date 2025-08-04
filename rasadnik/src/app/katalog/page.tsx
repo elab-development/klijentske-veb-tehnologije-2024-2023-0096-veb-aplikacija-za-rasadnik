@@ -1,13 +1,12 @@
+// File: src/app/katalog/page.tsx
 import { fetchPlants } from "@/lib/api";
-import PlantList from "@/components/shared/PlantList";
+import ClientSideCatalog from "./ClientSideCatalog";
 
-export default async function Katalog() {
+export default async function KatalogPage() {
   const plants = await fetchPlants();
-
   return (
-    <main className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Plant List</h1>
-      <PlantList plants={plants} />
-    </main>
+    <div className="max-w-7xl mx-auto px-4 sm:px-10">
+      <ClientSideCatalog plants={plants} />
+    </div>
   );
 }
