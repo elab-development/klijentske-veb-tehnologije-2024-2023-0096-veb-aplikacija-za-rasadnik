@@ -12,6 +12,8 @@ export default function Katalog() {
   const [lightFilter, setLightFilter] = useState("all");
   const [maintenanceFilter, setMaintenanceFilter] = useState("all");
 
+  useEffect(()=>{console.log(plants)},[plants])
+
   useEffect(() => {
     async function fetchPlants() {
       try {
