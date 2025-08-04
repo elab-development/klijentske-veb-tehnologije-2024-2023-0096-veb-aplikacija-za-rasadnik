@@ -1,9 +1,3 @@
-type Props = {
-  params: {
-    id: string;
-  };
-};
-
-export default function PojedinacanProizvod({ params }: Props) {
-  return <div>Proizvod ID: {params.id}</div>;
+export default function KorpaPage() {
+  return <div>Korpa sa proizvodima</div>;
 }
