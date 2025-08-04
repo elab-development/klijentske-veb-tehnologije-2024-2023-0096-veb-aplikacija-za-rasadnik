@@ -12,13 +12,28 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="w-full fixed top-0 left-0 z-50 bg-white border-b border-muted font-inter">
+    <header className="w-full fixed top-0 left-0 z-50 bg-white font-inter">
       {/* Gornja traka */}
-      <div className="bg-beige text-[15px] text-primary flex justify-center px-4 sm:px-10 py-1 items-center">
-        <div className="flex gap-3">
-          <Image src="/assets/instagram.png" alt="Instagram" width={16} height={16} />
-          <Image src="/assets/facebook.png" alt="Facebook" width={16} height={16} />
-          <Image src="/assets/tiktok.png" alt="TikTok" width={16} height={16} />
+      <div className="bg-beige text-[15px] text-primary flex flex-col sm:flex-row sm:justify-between px-4 sm:px-10 py-1 items-center gap-1 sm:gap-0">
+        {/* Adresa za desktop */}
+        <div className="hidden sm:flex items-center gap-6">
+          <div className="flex items-center gap-1">
+            <Image src="/assets/lokacija.png" alt="Lokacija" width={16} height={16} />
+            <span>Random adresa br.233 , 11000 Beograd</span>
+          </div>
+        </div>
+
+        {/* Radno vreme + socijalne mreže desno */}
+        <div className="flex items-center gap-4 sm:ml-auto">
+          <div className="hidden sm:flex items-center gap-1">
+            <Image src="/assets/sat.png" alt="Sat" width={16} height={16} />
+            <span>Pon - Sub 8.00-19.00 / Nedelja neradni dan</span>
+          </div>
+          <div className="flex gap-3">
+            <Image src="/assets/instagram.png" alt="Instagram" width={16} height={16} />
+            <Image src="/assets/facebook.png" alt="Facebook" width={16} height={16} />
+            <Image src="/assets/tiktok.png" alt="TikTok" width={16} height={16} />
+          </div>
         </div>
       </div>
 
