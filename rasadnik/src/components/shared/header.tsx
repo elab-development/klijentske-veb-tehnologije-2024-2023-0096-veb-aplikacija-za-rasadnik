@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
-const isLoggedIn = false; // Zameniti kasnije sa pravom proverom
+const isLoggedIn = false; // Kasnije zameni sa pravom proverom
 const userName = "Marko"; // Primer imena korisnika
 
 export default function Header() {
@@ -33,25 +32,26 @@ export default function Header() {
 
       {/* Navigacija */}
       <div className="flex justify-between items-center py-3 px-4 sm:px-10 bg-white">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Image src="/assets/logo.png" alt="Logo" width={32} height={32} />
-          <span className="text-lg font-bold text-primary">RASADNIK</span>
-        </Link>
+        {/* Leva strana: logo + meni */}
+        <div className="flex items-center gap-8">
+          <Link href="/" className="flex items-center gap-2">
+            <Image src="/assets/logo.png" alt="Logo" width={32} height={32} />
+            <span className="text-lg font-bold text-primary">RASADNIK</span>
+          </Link>
 
-        {/* Navigacija meni */}
-        <nav className="hidden sm:flex gap-6 text-primary font-medium">
-          <Link href="/o-nama" className="hover:underline">O NAMA</Link>
-          <Link href="/katalog" className="hover:underline">KATALOG</Link>
-          <Link href="/lista-zelja" className="hover:underline">LISTA ŽELJA</Link>
-        </nav>
+          <nav className="hidden sm:flex gap-6 text-primary font-medium">
+            <Link href="/o-nama" className="hover:underline">O NAMA</Link>
+            <Link href="/katalog" className="hover:underline">KATALOG</Link>
+            <Link href="/lista-zelja" className="hover:underline">LISTA ŽELJA</Link>
+          </nav>
+        </div>
 
         {/* Desna strana */}
         <div className="flex items-center gap-4">
-          {/* Telefon */}
+          {/* Telefon dugme */}
           <a
             href="tel:0600424270"
-            className="bg-zelena text-white px-4 py-2 rounded-full flex items-center gap-2 hover:opacity-90 transition"
+            className="bg-[#63A60B] text-white px-4 py-2 rounded-full flex items-center gap-2 hover:opacity-90 transition"
           >
             <Image src="/assets/telefon.png" alt="Telefon" width={16} height={16} />
             <span className="text-sm font-medium">060/042 42 70</span>

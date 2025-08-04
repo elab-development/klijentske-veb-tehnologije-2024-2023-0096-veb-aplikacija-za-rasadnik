@@ -1,56 +1,90 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter); 
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  
-  --color-ring: var(--ring);
-  --color-input: var(--input);
+
   --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
+  --color-ring: var(--ring);
+
   --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
   --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
+  --color-popover-foreground: var(--popover-foreground);
+
   --color-card: var(--card);
-  
-  
-  
+  --color-card-foreground: var(--card-foreground);
 }
 
+:root {
+  --radius: 0.625rem;
 
+  /* Boje po tvojoj paleti u HSL (bez hsl() jer Tailwind očekuje vrednost bez hsl) */
+  --background: 40 20% 99%;         /* #FDFCF9 (offwhite) */
+  --foreground: 133 75% 17%;        /* #083626 (tamno zelena) */
+
+  --primary: 133 75% 17%;           /* tamno zelena */
+  --primary-foreground: 0 0% 100%;  /* bela */
+
+  --secondary: 92 96% 35%;          /* #63A60B (svetlo zelena) */
+  --secondary-foreground: 0 0% 100%;/* bela */
+
+  --muted: 37 42% 93%;              /* #F5F2ED (bež) */
+  --muted-foreground: 133 75% 17%;  /* tamno zelena */
+
+  --popover: 37 42% 93%;             /* bež */
+  --popover-foreground: 133 75% 17%; /* tamno zelena */
+
+  --card: 37 42% 93%;               /* bež */
+  --card-foreground: 133 75% 17%;   /* tamno zelena */
+
+  --border: 210 15% 90%;            /* svetlo siva */
+  --ring: 133 75% 17%;              /* tamno zelena */
+}
+
+.dark {
+  --background: 133 75% 17%;        /* tamno zelena */
+  --foreground: 0 0% 100%;          /* bela */
+
+  --primary: 0 0% 100%;             /* bela */
+  --primary-foreground: 133 75% 17%;/* tamno zelena */
+
+  --secondary: 92 96% 35%;          /* svetlo zelena */
+  --secondary-foreground: 0 0% 100%;/* bela */
+
+  --muted: 92 96% 35%;              /* svetlo zelena */
+  --muted-foreground: 0 0% 100%;    /* bela */
+
+  --popover: 133 75% 17%;            /* tamno zelena */
+  --popover-foreground: 0 0% 100%;  /* bela */
+
+  --card: 133 75% 17%;              /* tamno zelena */
+  --card-foreground: 0 0% 100%;    /* bela */
+
+  --border: 0 0% 30%;               /* tamno siva */
+  --ring: 0 0% 100%;                /* bela */
+}
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
   html {
     @apply font-sans;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
+  }
+  * {
+    @apply border-border outline-ring/50 box-border;
   }
 }

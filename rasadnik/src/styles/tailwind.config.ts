@@ -7,13 +7,13 @@ content: [
   "./app/**/*.{ts,tsx}",
   "./components/**/*.{ts,tsx}",
   "./components/shared/**/*.{ts,tsx}",
-  "./styles/**/*.{ts,tsx,css}"
+
 ],
   theme: {
     extend: {
     colors: {
-        zelena: "#083626",
-        svetlozelena: "#63A60B",
+        primary: "#083626",
+        secondary: "#63A60B",
         beige: "#F5F2ED",
         offwhite: "#FDFCF9",
     
