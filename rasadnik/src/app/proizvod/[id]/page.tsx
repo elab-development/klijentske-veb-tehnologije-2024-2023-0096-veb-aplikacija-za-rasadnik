@@ -15,24 +15,26 @@ export default async function PojedinacanProizvod({ params }: { params: { id: st
   return (
     <main className="max-w-7xl mx-auto px-4 py-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Left: Image */}
-        <div className="w-full bg-gray-100 rounded-md overflow-hidden">
+        {/* Leva strana: Slika sa fiksnim dimenzijama */}
+        <div className="w-full flex justify-center items-start">
           {plant.image_url ? (
-            <Image
-              src={plant.image_url}
-              alt={plant.common_name || "Plant image"}
-              width={600}
-              height={400}
-              className="object-cover w-full h-full"
-            />
+           <div className="w-full max-w-[400px] h-[300px] relative rounded-md overflow-hidden bg-gray-100 mx-auto shrink-0">
+      <Image
+        src={plant.image_url}
+        alt={plant.common_name || "Plant image"}
+        fill
+        className="object-cover"
+     />
+      </div>
+
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-gray-400 py-20">
+            <div className="w-[400px] aspect-[4/3] flex items-center justify-center text-gray-400 bg-gray-100 rounded-md">
               No image
             </div>
           )}
         </div>
 
-        {/* Right: Info */}
+        {/* Desna strana: Informacije */}
         <div>
           <p className="text-xs uppercase text-gray-500 mb-1">Kategorija</p>
           <h1 className="text-2xl font-bold text-[#083626] mb-2">
@@ -71,6 +73,8 @@ export default async function PojedinacanProizvod({ params }: { params: { id: st
           </div>
         </div>
       </div>
+          
+
     </main>
   );
 }
