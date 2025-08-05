@@ -8,6 +8,8 @@ import QuantitySelector from "@/components/shared/QuantitySelector";
 import { Button } from "@/components/ui/button";
 import { Heart, ClipboardList } from "lucide-react";
 import { useCartStore } from "@/lib/store/cartStore";
+import { useWishlistStore } from "@/lib/store/useWishlistStore";
+import { usePlantingPlanStore } from "@/lib/store/usePlantingPlanStore";
 
 export default function PojedinacanProizvod() {
   const params = useParams();
@@ -15,6 +17,8 @@ export default function PojedinacanProizvod() {
   const [quantity, setQuantity] = useState<number>(1);
 
   const addToCart = useCartStore((state) => state.addToCart);
+  const addToWishlist = useWishlistStore((state) => state.addToWishlist);
+  const addToPlantingPlan = usePlantingPlanStore((state) => state.addToPlan);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,9 +31,29 @@ export default function PojedinacanProizvod() {
 
   if (!plant) return <div>Učitavanje...</div>;
 
+  const handleAddToWishlist = () => {
+    addToWishlist({
+      id: plant.id,
+      name: plant.common_name,
+      price: plant.price,
+      image_url: plant.image_url,
+    });
+  };
+
+  const handleAddToPlantingPlan = () => {
+    addToPlantingPlan({
+      id: plant.id,
+      name: plant.common_name,
+      image_url: plant.image_url,
+      date: new Date().toISOString().split("T")[0],
+      status: "Nije zasađeno",
+    });
+  };
+
   return (
     <main className="max-w-7xl mx-auto px-4 py-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* Slika */}
         <div className="w-full flex justify-center items-start">
           {plant.image_url ? (
             <div className="w-full max-w-[400px] h-[300px] relative rounded-md overflow-hidden bg-gray-100 mx-auto shrink-0">
@@ -47,6 +71,7 @@ export default function PojedinacanProizvod() {
           )}
         </div>
 
+        {/* Informacije */}
         <div>
           <p className="text-xs uppercase text-gray-500 mb-1">Kategorija</p>
           <h1 className="text-2xl font-bold text-[#083626] mb-2">
@@ -56,15 +81,9 @@ export default function PojedinacanProizvod() {
             {plant.price} RSD
           </p>
 
-          <p className="text-sm text-gray-700 leading-relaxed mb-6">
-            U ponudi sadnice Tuje Smaragd (dummy tekst)...
-          </p>
-
           <ul className="text-sm space-y-1 mb-6">
             <li><strong>Latinski naziv:</strong> <span className="text-[#63A60B]">{plant.scientific_name}</span></li>
             <li><strong>Kategorija:</strong> <span className="italic">{plant.family || "Kategorija"}</span></li>
-            <li><strong>Uslovi osunčanosti:</strong> <span className="italic">Uslovi</span></li>
-            <li><strong>Zahtevi za održavanje:</strong> <span className="italic text-[#63A60B]">Zahtevi</span></li>
           </ul>
 
           <div className="flex items-center gap-3 mb-6">
@@ -72,13 +91,7 @@ export default function PojedinacanProizvod() {
             <Button
               className="bg-[#63A60B] hover:bg-[#4c8207] text-white px-6 py-2"
               onClick={() =>
-                addToCart({
-                  id: plant.id,
-                  name: plant.common_name,
-                  price: plant.price,
-                  quantity,
-                  image_url: plant.image_url,
-                })
+                addToCart({ id: plant.id, name: plant.common_name, price: plant.price, quantity, image_url: plant.image_url })
               }
             >
               Dodaj u Korpu
@@ -86,10 +99,10 @@ export default function PojedinacanProizvod() {
           </div>
 
           <div className="flex items-center gap-6 text-sm text-gray-600">
-            <button className="flex items-center gap-1 hover:text-[#63A60B]">
+            <button onClick={handleAddToWishlist} className="flex items-center gap-1 hover:text-[#63A60B]">
               <Heart className="w-4 h-4" /> Dodaj u listu želja
             </button>
-            <button className="flex items-center gap-1 hover:text-[#63A60B]">
+            <button onClick={handleAddToPlantingPlan} className="flex items-center gap-1 hover:text-[#63A60B]">
               <ClipboardList className="w-4 h-4" /> Dodaj u plan sadnje
             </button>
           </div>
