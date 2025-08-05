@@ -7,21 +7,21 @@ export default function Footer() {
     <footer className="bg-white mt-10 text-[#083626] text-[15px] font-inter">
       <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
         {/* Logo + opis */}
-        <div className="flex flex-col items-start">
-          <div className="flex items-center gap-3">
-            <Image
-              src="/assets/logo.png"
-              alt="Rasadnik logo"
-              width={60}
-              height={60}
-              priority
-            />
-            <span className="text-2xl font-bold text-[#083626]">RASADNIK</span>
-          </div>
-          <p className="mt-3 text-[#083626]/80 font-light">
-            Najbolji kvalitet po najnižim cenama
-          </p>
-        </div>
+        <div className="flex flex-col items-center text-center">
+  <div className="flex items-center gap-3">
+    <Image
+      src="/assets/logo.png"
+      alt="Rasadnik logo"
+      width={100}
+      height={80}
+      priority
+    />
+  </div>
+  <p className="mt-3 text-[#083626]/80 font-light leading-snug">
+    Najbolji kvalitet po <br /> najnižim cenama
+  </p>
+</div>
+
 
         {/* Brzi Linkovi */}
         <div>

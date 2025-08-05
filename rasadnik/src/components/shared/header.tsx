@@ -54,8 +54,8 @@ export default function Header() {
       <div className="flex justify-between items-center py-3 px-4 sm:px-10 bg-white">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/assets/logo.png" alt="Logo" width={32} height={32} />
-            <span className="text-lg font-bold text-primary">RASADNIK</span>
+            <Image src="/assets/logo.png" alt="Logo" width={80} height={60} />
+            
           </Link>
 
           <nav className="hidden sm:flex gap-6 text-primary font-medium">

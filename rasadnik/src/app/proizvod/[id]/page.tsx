@@ -73,7 +73,10 @@ export default function PojedinacanProizvod() {
 
         {/* Informacije */}
         <div className="flex-1">
-          <p className="text-xs uppercase text-gray-500 mb-1">Kategorija</p>
+          <p className="text-xs uppercase text-gray-500 mb-1">
+             Tip: <span className="font-semibold normal-case text-[#083626] uppercase">{plant.type || "Nepoznata"}</span>
+          </p>
+
           <h1 className="text-2xl font-bold text-[#083626] mb-2">
             {plant.common_name || "Naziv biljke"}
           </h1>
