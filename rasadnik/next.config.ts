@@ -1,12 +1,18 @@
 import type { NextConfig } from "next";
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   images: {
-    domains: [
-      "bs.floristic.org", // primer iz Trefle
-      "trefle.io",         // ako API direktno hostuje slike
-      "cdn.pixabay.com",   // ako koristiš rezervne slike
-      // dodaj ovde sve domene koje koristiš za slike
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "d2seqvvyy3b8p2.cloudfront.net",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "bs.plantnet.org",
+        pathname: "**",
+      },
     ],
   },
 };
