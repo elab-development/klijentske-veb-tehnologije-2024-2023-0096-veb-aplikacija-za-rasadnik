@@ -2,11 +2,27 @@
 
 import Image from "next/image";
 import Link from "next/link";
-
-const isLoggedIn = false; // Kasnije zameni sa pravom proverom
-const userName = "Marko"; // Primer imena korisnika
+import { useEffect, useState } from "react";
 
 export default function Header() {
+  const [user, setUser] = useState<{ name: string } | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("/api/me");
+        if (res.ok) {
+          const data = await res.json();
+          setUser(data.user);
+        }
+      } catch (error) {
+        console.error("Greška pri dohvatanju korisnika:", error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
   return (
     <header className="w-full border-b border-muted">
       {/* Gornja traka */}
@@ -58,10 +74,10 @@ export default function Header() {
           </a>
 
           {/* Login ili korisnik */}
-          {isLoggedIn ? (
+          {user ? (
             <Link href="/profil" className="flex items-center gap-1 text-primary hover:underline">
               <Image src="/assets/korisnik.png" alt="Profil" width={20} height={20} />
-              <span>{userName}</span>
+              <span>{user.name}</span>
             </Link>
           ) : (
             <Link href="/prijava" className="flex items-center gap-1 text-primary hover:underline">
