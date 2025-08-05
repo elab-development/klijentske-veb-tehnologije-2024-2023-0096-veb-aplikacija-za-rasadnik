@@ -10,6 +10,11 @@ interface Plant {
   image_url?: string | null;
   family?: string;
   price: number | string;
+  type?: string;
+  sun?: string;
+  maintenance?: string;
+  category?: string;
+  description?: string;
 }
 
 export default function PlantList({ plants }: { plants: Plant[] }) {
@@ -21,7 +26,7 @@ export default function PlantList({ plants }: { plants: Plant[] }) {
           className="bg-white rounded-md overflow-hidden shadow hover:shadow-lg transition"
         >
           <Link href={`/proizvod/${p.id}`} className="block">
-            {/* Image Container - square and responsive */}
+            {/* Slika - square fiksna visina i responsive */}
             <div className="w-full aspect-square bg-gray-100 overflow-hidden relative">
               {p.image_url ? (
                 <Image
@@ -37,18 +42,21 @@ export default function PlantList({ plants }: { plants: Plant[] }) {
               )}
             </div>
 
-            {/* Details */}
+            {/* Detalji */}
             <div className="p-4">
-              {p.family && (
+              {p.category && (
                 <p className="text-xs text-gray-500 uppercase mb-1 truncate">
-                  {p.family}
+                  {p.category}
                 </p>
               )}
               <h3 className="text-lg font-semibold text-[#083626] mb-1 truncate">
                 {p.common_name || 'Naziv biljke'}
               </h3>
-              <p className="text-sm font-semibold text-[#63A60B] mb-2 truncate">
+              <p className="text-sm font-semibold text-[#63A60B] mb-1 truncate">
                 {p.scientific_name}
+              </p>
+              <p className="text-sm text-gray-500 mb-1">
+                ☀ {p.sun} | 🛠 {p.maintenance}
               </p>
               <p className="text-lg font-semibold text-[#63A60B]">
                 {p.price} RSD
