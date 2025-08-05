@@ -2,28 +2,41 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-
-const isLoggedIn = false;
-const userName = "Marko";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState<{ name: string } | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("/api/me");
+        if (res.ok) {
+          const data = await res.json();
+          setUser(data.user);
+        } else {
+          setUser(null);
+        }
+      } catch (err) {
+        console.error("Greška prilikom dohvatanja korisnika:", err);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   return (
     <header className="w-full fixed top-0 left-0 z-50 bg-white font-inter">
       {/* Gornja traka */}
       <div className="bg-beige text-[15px] text-primary flex flex-col sm:flex-row sm:justify-between px-4 sm:px-10 py-1 items-center gap-1 sm:gap-0">
-        {/* Adresa za desktop */}
         <div className="hidden sm:flex items-center gap-6">
           <div className="flex items-center gap-1">
             <Image src="/assets/lokacija.png" alt="Lokacija" width={16} height={16} />
             <span>Random adresa br.233 , 11000 Beograd</span>
           </div>
         </div>
-
-        {/* Radno vreme + socijalne mreže desno */}
         <div className="flex items-center gap-4 sm:ml-auto">
           <div className="hidden sm:flex items-center gap-1">
             <Image src="/assets/sat.png" alt="Sat" width={16} height={16} />
@@ -58,10 +71,10 @@ export default function Header() {
             <span className="text-sm font-medium">060/042 42 70</span>
           </a>
 
-          {isLoggedIn ? (
+          {user ? (
             <Link href="/profil" className="flex items-center gap-1 text-primary hover:underline">
               <Image src="/assets/korisnik.png" alt="Profil" width={20} height={20} />
-              <span>{userName}</span>
+              <span>{user.name}</span>
             </Link>
           ) : (
             <Link href="/prijava" className="flex items-center gap-1 text-primary hover:underline">
@@ -80,7 +93,7 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobilni meni fullscreen */}
+      {/* Mobilni meni */}
       {menuOpen && (
         <div className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-start pt-16 gap-6 text-primary text-[15px] font-medium overflow-y-auto pb-10">
           <Image src="/assets/logo.png" alt="Logo" width={40} height={40} />
@@ -95,10 +108,10 @@ export default function Header() {
             <span className="text-[15px] font-semibold">060/042 42 70</span>
           </a>
 
-          {isLoggedIn ? (
+          {user ? (
             <Link href="/profil" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 text-[#63A60B]">
               <Image src="/assets/korisnik.png" alt="Profil" width={22} height={22} />
-              <span>{userName}</span>
+              <span>{user.name}</span>
             </Link>
           ) : (
             <Link href="/prijava" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 text-[#63A60B]">
