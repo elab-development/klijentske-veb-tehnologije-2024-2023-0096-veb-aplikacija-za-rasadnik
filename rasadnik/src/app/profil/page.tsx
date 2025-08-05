@@ -1,20 +1,26 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+
+interface User {
+  name: string;
+  email: string;
+}
 
 export default function ProfilPage() {
-  const [user, setUser] = useState<{ name: string } | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await fetch('/api/me');
+      const res = await fetch("/api/me");
       if (res.ok) {
         const data = await res.json();
         setUser(data.user);
       } else {
-        router.push('/prijava');
+        router.push("/prijava");
       }
     };
 
@@ -22,24 +28,43 @@ export default function ProfilPage() {
   }, []);
 
   const handleLogout = async () => {
-    await fetch('/api/logout', { method: 'POST' });
-    window.location.href = '/';
-    
-    
+    await fetch("/api/logout", { method: "POST" });
+    window.location.href = "/";
   };
 
-  return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Zdravo, {user?.name}</h1>
-      
-      {/* Ovde će ići lista želja, plan sadnje itd... */}
+  if (!user) return <div className="p-6">Učitavanje...</div>;
 
-      <button
-        onClick={handleLogout}
-        className="mt-4 bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700"
-      >
-        Odjavi se
-      </button>
-    </div>
+  return (
+    <section className="max-w-4xl mx-auto mt-24 px-4 sm:px-6 font-inter">
+      <div className="bg-[#F5F2ED] rounded-[32px] p-6 sm:p-10 flex flex-col sm:flex-row items-center gap-6 sm:gap-12 shadow">
+        {/* Ikonica korisnika */}
+        <div className="flex-shrink-0">
+          <Image
+            src="/assets/korisnikVeci.png"
+            alt="Korisnik"
+            width={100}
+            height={100}
+          />
+        </div>
+
+        {/* Podaci o korisniku + dugme za odjavu */}
+        <div className="text-center sm:text-left">
+          <h2 className="text-xl font-bold text-[#083626] mb-4">VAŠI PODACI</h2>
+          <p className="text-[#083626]">
+            <strong>Korisničko ime:</strong> {user.name}
+          </p>
+          <p className="text-[#083626] mb-4">
+            <strong>E-mail adresa:</strong> {user.email}
+          </p>
+
+          <button
+            onClick={handleLogout}
+            className="mt-2 bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition"
+          >
+            Odjavi se
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }
