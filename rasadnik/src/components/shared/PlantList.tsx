@@ -52,8 +52,9 @@ export default function PlantList({ plants }: { plants: Plant[] }) {
               <h3 className="text-lg font-semibold text-[#083626] mb-1 truncate">
                 {p.common_name || 'Naziv biljke'}
               </h3>
+              {/* Kategorija umesto scientific_name */}
               <p className="text-sm font-semibold text-[#63A60B] mb-1 truncate">
-                {p.scientific_name}
+                {p.type} {/* Ovo je mesto gde se prikazuje tip sadnice: ukrasne/zacinske/vocne */}
               </p>
               <p className="text-sm text-gray-500 mb-1">
                 ☀ {p.sun} | 🛠 {p.maintenance}

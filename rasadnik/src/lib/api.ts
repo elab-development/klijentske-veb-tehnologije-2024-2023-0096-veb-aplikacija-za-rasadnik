@@ -1,14 +1,24 @@
-// File: src/lib/api.ts
 "use server";
 
 let cachedPlants: any[] | null = null;
 
-const types = ['ukrasne', 'zacinske', 'vocne'] as const;
 const sunExposures = ['sunce', 'polusenka', 'senka'] as const;
 const maintenances = ['nisko', 'umereno', 'zahtevno'] as const;
 
 function getRandom<T>(arr: readonly T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function determinePlantType(category: string): 'ukrasne' | 'zacinske' | 'vocne' {
+  const lower = category.toLowerCase();
+
+  const vocneFamilies = ['rose family', 'olive family'];
+  const ukrasneFamilies = ['fagaceae', 'ranunculaceae', 'ericaceae'];
+
+  if (vocneFamilies.some(f => lower.includes(f))) return 'vocne';
+  if (ukrasneFamilies.some(f => lower.includes(f))) return 'ukrasne';
+
+  return 'zacinske';
 }
 
 export async function fetchPlants() {
@@ -26,15 +36,20 @@ export async function fetchPlants() {
 
   const json: { data: any[] } = await res.json();
 
-  cachedPlants = json.data.slice(0, 20).map((p, i) => ({
-    ...p,
-    price: 500 + i * 50,
-    type: getRandom(types),
-    sun: getRandom(sunExposures),
-    maintenance: getRandom(maintenances),
-    category: p.family_common_name || p.family || 'N/A',
-    description: `Opis za biljku ${p.common_name || 'bez imena'}...`,
-  }));
+  cachedPlants = json.data.slice(0, 20).map((p, i) => {
+    const category = p.family_common_name || p.family || 'N/A';
+    const type = determinePlantType(category);
+
+    return {
+      ...p,
+      price: 500 + i * 50,
+      category,
+      type,
+      sun: getRandom(sunExposures),
+      maintenance: getRandom(maintenances),
+      description: p.bibliography || 'Opis nije dostupan.',
+    };
+  });
 
   return cachedPlants;
 }
