@@ -10,10 +10,11 @@ import { Heart, ClipboardList } from "lucide-react";
 import { useCartStore } from "@/lib/store/cartStore";
 import { useWishlistStore } from "@/lib/store/useWishlistStore";
 import { usePlantingPlanStore } from "@/lib/store/usePlantingPlanStore";
+import type { Plant } from "@/types/Plant";
 
 export default function PojedinacanProizvod() {
   const params = useParams();
-  const [plant, setPlant] = useState<any>(null);
+  const [plant, setPlant] = useState<Plant | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
 
   const addToCart = useCartStore((state) => state.addToCart);
@@ -74,7 +75,10 @@ export default function PojedinacanProizvod() {
         {/* Informacije */}
         <div className="flex-1">
           <p className="text-xs uppercase text-gray-500 mb-1">
-             Tip: <span className="font-semibold normal-case text-[#083626] uppercase">{plant.type || "Nepoznata"}</span>
+            Tip:{" "}
+            <span className="font-semibold normal-case text-[#083626] uppercase">
+              {plant.type || "Nepoznata"}
+            </span>
           </p>
 
           <h1 className="text-2xl font-bold text-[#083626] mb-2">
@@ -85,7 +89,9 @@ export default function PojedinacanProizvod() {
           </p>
 
           <p className="text-sm text-gray-700 leading-relaxed mb-6 whitespace-pre-line">
-            {plant.description || plant.bibliography || "Opis nije dostupan za ovu biljku."}
+            {plant.description ||
+              plant.bibliography ||
+              "Opis nije dostupan za ovu biljku."}
           </p>
 
           <ul className="text-sm space-y-1 mb-6">
