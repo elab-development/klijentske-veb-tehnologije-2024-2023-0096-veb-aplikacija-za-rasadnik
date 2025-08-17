@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-
+//svi tipovi po kojima filtrira
 export type PlantType = 'sve'|'ukrasne'|'zacinske'|'vocne';
 export type SunExposure = 'sve'|'sunce'|'polusenka'|'senka';
 export type Maintenance = 'sve'|'nisko'|'umereno'|'zahtevno';
@@ -10,7 +10,7 @@ export interface Filters {
   sun: SunExposure;
   maintenance: Maintenance;
 }
-
+//osnovan state da je sve namesteno
 export default function PlantFilter({ onChange }: { onChange: (f: Filters) => void }) {
   const [f, setF] = useState<Filters>({ type:'sve', sun:'sve', maintenance:'sve' });
 
@@ -23,7 +23,7 @@ export default function PlantFilter({ onChange }: { onChange: (f: Filters) => vo
   return (
     <section className="bg-[#eef1df] rounded-md p-4 mb-6 text-[15px] text-primary font-inter">
       <h2 className="text-lg font-bold mb-3">Pretraži po</h2>
-
+    {/*Pretraga po tipu sadnice*/}
       <div className="mb-3">
         <span className="font-medium mr-2">Tip sadnice:</span>
         {[['Sve','sve'], ['Ukrasne','ukrasne'], ['Začinske','zacinske'], ['Voćne','vocne']].map(([label, val]) => (
@@ -36,7 +36,7 @@ export default function PlantFilter({ onChange }: { onChange: (f: Filters) => vo
           </label>
         ))}
       </div>
-
+     {/*Pretraga po osuncanosti*/}
       <div className="mb-3">
         <span className="font-medium mr-2">Uslovi osunčanosti:</span>
         {[['Sve','sve'], ['Sunce','sunce'], ['Polusenka','polusenka'], ['Senka','senka']].map(([label,val]) => (
@@ -49,7 +49,7 @@ export default function PlantFilter({ onChange }: { onChange: (f: Filters) => vo
           </label>
         ))}
       </div>
-
+        {/*Pretraga po odrzavanju*/}
       <div>
         <span className="font-medium mr-2">Zahtevi za održavanje:</span>
         {[['Sve','sve'], ['Nisko','nisko'], ['Umereno','umereno'], ['Zahtevno','zahtevno']].map(([label,val]) => (

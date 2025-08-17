@@ -23,14 +23,14 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: 'Invalid credentials' }, { status: 401 })
   }
 
-  // ✅ Kreiraj JWT token
+  // Kreiraj JWT token
   const token = jwt.sign(
     { id: user.id, name: user.name, email: user.email },
     process.env.JWT_SECRET!,
     { expiresIn: '7d' }
   )
 
-  // ✅ Postavi cookie (httpOnly)
+  //  Postavi cookie (httpOnly)
   const res = NextResponse.json({ message: 'Login successful' }, { status: 200 })
   res.cookies.set('token', token, {
     httpOnly: true,

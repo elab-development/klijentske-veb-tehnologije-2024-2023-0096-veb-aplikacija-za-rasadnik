@@ -1,4 +1,4 @@
-// components/PlantCard.tsx
+
 
 import Image from "next/image";
 

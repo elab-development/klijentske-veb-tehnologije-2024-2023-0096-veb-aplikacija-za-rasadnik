@@ -16,11 +16,11 @@ export default function PojedinacanProizvod() {
   const params = useParams();
   const [plant, setPlant] = useState<Plant | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
-
+ //dodavanja uu korpu, listu zelja i plan sadnje
   const addToCart = useCartStore((state) => state.addToCart);
   const addToWishlist = useWishlistStore((state) => state.addToWishlist);
   const addToPlantingPlan = usePlantingPlanStore((state) => state.addToPlan);
-
+  //fetchovanje podataka o biljci na osnovu id koji je kliknut na katalog strani
   useEffect(() => {
     const fetchData = async () => {
       const allPlants = await fetchPlants();
@@ -31,7 +31,7 @@ export default function PojedinacanProizvod() {
   }, [params]);
 
   if (!plant) return <div>Učitavanje...</div>;
-
+ //dodavanje u listu zelja
   const handleAddToWishlist = () => {
     addToWishlist({
       id: plant.id,
@@ -40,7 +40,7 @@ export default function PojedinacanProizvod() {
       image_url: plant.image_url,
     });
   };
-
+//dodavanje u plan sadnnje
   const handleAddToPlantingPlan = () => {
     addToPlantingPlan({
       id: plant.id,

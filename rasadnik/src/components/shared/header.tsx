@@ -59,7 +59,8 @@ export default function Header() {
           </Link>
 
           <nav className="hidden sm:flex gap-6 text-primary font-medium">
-            <Link href="/o-nama" className="hover:underline">O NAMA</Link>
+            <Link href="#oNama" className="hover:underline">O NAMA</Link>
+
             <Link href="/katalog" className="hover:underline">KATALOG</Link>
             <Link href="/lista-zelja" className="hover:underline">LISTA ŽELJA</Link>
           </nav>
@@ -99,7 +100,7 @@ export default function Header() {
           <Image src="/assets/logo.png" alt="Logo" width={40} height={40} />
           <span className="text-lg font-bold">RASADNIK</span>
 
-          <Link href="/o-nama" onClick={() => setMenuOpen(false)}>O NAMA</Link>
+          <Link href="#oNama" onClick={() => setMenuOpen(false)}>O NAMA</Link>
           <Link href="/katalog" onClick={() => setMenuOpen(false)}>KATALOG</Link>
           <Link href="/lista-zelja" onClick={() => setMenuOpen(false)}>LISTA ŽELJA</Link>
 

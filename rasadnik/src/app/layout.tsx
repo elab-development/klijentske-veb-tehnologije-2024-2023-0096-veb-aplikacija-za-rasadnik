@@ -15,7 +15,7 @@ export const metadata = {
   title: "Rasadnik",
   description: "Kupovina i planiranje sadnje biljaka",
 };
-
+//definisan layout svake strane
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="sr">

@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-white mt-10 text-[#083626] text-[15px] font-inter">
       <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
-        {/* Logo + opis */}
+        {/* Logo */}
         <div className="flex flex-col items-center text-center">
   <div className="flex items-center gap-3">
     <Image
@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Copyright bez border-a */}
+      {/* Copyright */}
       <div className="text-center text-[#878787] text-[15px] font-light py-4">
         COPYRIGHT 2025 RASADNIK
       </div>

@@ -26,7 +26,7 @@ export default function PlantList({ plants }: { plants: Plant[] }) {
           className="bg-white rounded-md overflow-hidden shadow hover:shadow-lg transition"
         >
           <Link href={`/proizvod/${p.id}`} className="block">
-            {/* Slika - square fiksna visina i responsive */}
+            {/* Slika  */}
             <div className="w-full aspect-square bg-gray-100 overflow-hidden relative">
               {p.image_url ? (
                 <Image
@@ -52,9 +52,9 @@ export default function PlantList({ plants }: { plants: Plant[] }) {
               <h3 className="text-lg font-semibold text-[#083626] mb-1 truncate">
                 {p.common_name || 'Naziv biljke'}
               </h3>
-              {/* Kategorija umesto scientific_name */}
+              {/* Kategorija */}
               <p className="text-sm font-semibold text-[#63A60B] mb-1 truncate">
-                {p.type} {/* Ovo je mesto gde se prikazuje tip sadnice: ukrasne/zacinske/vocne */}
+                {p.type} {/* ukrasne/zacinske/vocne */}
               </p>
               <p className="text-sm text-gray-500 mb-1">
                 ☀ {p.sun} | 🛠 {p.maintenance}

@@ -1,14 +1,14 @@
 "use server";
 
 let cachedPlants: any[] | null = null;
-
+//odredjivanje sunca i odrzavanja
 const sunExposures = ['sunce', 'polusenka', 'senka'] as const;
 const maintenances = ['nisko', 'umereno', 'zahtevno'] as const;
 
 function getRandom<T>(arr: readonly T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
-
+//odredjivanje tipa biljke na osnovu familije
 function determinePlantType(category: string): 'ukrasne' | 'zacinske' | 'vocne' {
   const lower = category.toLowerCase();
 
@@ -20,7 +20,7 @@ function determinePlantType(category: string): 'ukrasne' | 'zacinske' | 'vocne' 
 
   return 'zacinske';
 }
-
+//fetchovanje biljaka iz api
 export async function fetchPlants() {
   if (cachedPlants) return cachedPlants;
 
@@ -53,7 +53,7 @@ export async function fetchPlants() {
 
   return cachedPlants;
 }
-
+//fetchovanje biljaka iz 
 export async function fetchPlantById(id: string) {
   const plants = await fetchPlants();
   return plants.find((p) => String(p.id) === id) ?? null;

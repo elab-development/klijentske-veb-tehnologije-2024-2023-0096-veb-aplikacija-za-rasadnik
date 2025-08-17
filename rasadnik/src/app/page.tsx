@@ -6,7 +6,7 @@ export default function Home() {
     <main className="w-full">
       {/* Hero Sekcija */}
       <section className="relative w-full h-[550px] sm:h-[650px] flex items-center justify-center text-white overflow-hidden">
-        {/* Pozadinska slika */}
+        
         <Image
           src="/assets/rasadnik-bg.png"
           alt="Pozadina Rasadnika"
@@ -14,10 +14,10 @@ export default function Home() {
           className="object-cover"
           priority
         />
-        {/* Crni overlay */}
+        
         <div className="absolute inset-0 bg-black/60 z-10" />
 
-        {/* Sadržaj */}
+       
         <div className="relative z-20 max-w-6xl w-full px-4 sm:px-8">
           <div className="max-w-[600px]">
             <h1 className="text-sm font-semibold uppercase tracking-wide text-[#b0d9b5] mb-2">
@@ -138,7 +138,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Dugme */}
+           
             <div className="text-center mt-12 mb-[100px]">
               <Link href="/katalog">
                 <button className="bg-[#63A60B] hover:bg-[#4c8207] transition text-white font-medium px-6 py-3 rounded-full text-sm">
@@ -147,7 +147,7 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Donji dekorativni pattern */}
+           
             <div className="absolute bottom-0 left-0 w-full">
               <Image
                 src="/assets/pattern.png"
@@ -162,7 +162,7 @@ export default function Home() {
       </section>
       <section id="oNama" className="bg-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
-          {/* Tekstualni deo */}
+         
           <div className="flex-1">
             <h3 className="text-sm text-[#63A60B] font-semibold uppercase mb-2">
               VIŠE OD 10 GODINA ISKUSTVA
@@ -208,8 +208,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Ovde dodaj ostale sekcije ispod hero sekcije */}
     </main>
   );
 }

@@ -10,4 +10,6 @@ export interface Plant {
   image_url?: string;
   sun?: string;
   maintenance?: string;
+  type?: string;
+  category?: string;
 }
